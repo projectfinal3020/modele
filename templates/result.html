@@ -1,0 +1,42 @@
+<!-- <!DOCTYPE html>
+<html>
+
+<head>
+    <title>Hasil Prediksi</title>
+</head>
+
+<body>
+    <h1>Hasil Prediksi</h1>
+    <img src="{{ image_path }}" alt="Gambar">
+    <p>Label Prediksi: {{ predicted_label }}</p>
+</body>
+
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hasil Prediksi</title>
+</head>
+
+<body>
+    <h1>Hasil Prediksi</h1>
+    <img src="" alt="Gambar" id="predicted-image">
+    <p>Label Prediksi: <span id="predicted-label"></span></p>
+
+    <script>
+        // Ambil data gambar dan label prediksi dari URL query parameter
+        const params = new URLSearchParams(window.location.search);
+        const imagePath = params.get('image_path');
+        const predictedLabel = params.get('predicted_label');
+
+        // Tampilkan gambar dan label prediksi
+        document.getElementById('predicted-image').src = imagePath;
+        document.getElementById('predicted-label').innerText = predictedLabel;
+    </script>
+</body>
+
+</html>

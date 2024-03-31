@@ -1,0 +1,55 @@
+<!-- <!DOCTYPE html>
+<html>
+
+<head>
+    <title>Upload Gambar Sampah</title>
+</head>
+
+<body>
+    <h1>Upload Gambar Sampah</h1>
+    <form method="POST" enctype="multipart/form-data">
+        <input type="file" name="file" accept="image/*">
+        <button type="submit">Upload</button>
+    </form>
+</body>
+
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deteksi Sampah</title>
+</head>
+
+<body>
+    <h1>Deteksi Sampah</h1>
+    <input type="file" id="file-input" accept="image/*">
+    <button onclick="uploadImage()">Unggah</button>
+    <div id="result"></div>
+
+    <script>
+        function uploadImage() {
+            var input = document.getElementById('file-input');
+            var file = input.files[0];
+
+            var formData = new FormData();
+            formData.append('file', file);
+
+            fetch('/predict', {
+                method: 'POST',
+                body: formData
+            })
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('result').innerText = 'Hasil Prediksi: ' + data.result;
+                    window.location.href = 'result.html';  // Redirect ke halaman hasil prediksi
+                })
+                .catch(error => console.error('Error:', error));
+        }
+    </script>
+</body>
+
+</html>
